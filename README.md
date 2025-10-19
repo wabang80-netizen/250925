@@ -27,7 +27,7 @@
 
 ## Python-код для решения квадратных уравнений
 
-```python
+```Python
 import math
 import cmath
 
