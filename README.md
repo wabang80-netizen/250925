@@ -67,3 +67,90 @@ if __name__ == "__main__":
         print(result)
     except ValueError:
         print("Ошибка: введите числовые значения коэффициентов.")
+```
+## C# код для решения квадратных уравнений
+```
+using System;
+
+class QuadraticEquationSolver
+{
+    static void Main()
+    {
+        Console.WriteLine("Решение квадратного уравнения ax^2 + bx + c = 0");
+        Console.Write("Введите коэффициент a: ");
+        if (!double.TryParse(Console.ReadLine(), out double a))
+        {
+            Console.WriteLine("Некорректное значение для a.");
+            return;
+        }
+
+        Console.Write("Введите коэффициент b: ");
+        if (!double.TryParse(Console.ReadLine(), out double b))
+        {
+            Console.WriteLine("Некорректное значение для b.");
+            return;
+        }
+
+        Console.Write("Введите коэффициент c: ");
+        if (!double.TryParse(Console.ReadLine(), out double c))
+        {
+            Console.WriteLine("Некорректное значение для c.");
+            return;
+        }
+
+        SolveQuadratic(a, b, c);
+    }
+
+    static void SolveQuadratic(double a, double b, double c)
+    {
+        const double epsilon = 1e-10; // для сравнения с нулём с учётом погрешности
+
+        if (Math.Abs(a) < epsilon)
+        {
+            // Уравнение вырождается в линейное: bx + c = 0
+            if (Math.Abs(b) < epsilon)
+            {
+                if (Math.Abs(c) < epsilon)
+                {
+                    Console.WriteLine("Уравнение имеет бесконечно много решений.");
+                }
+                else
+                {
+                    Console.WriteLine("Уравнение не имеет решений.");
+                }
+            }
+            else
+            {
+                double x = -c / b;
+                Console.WriteLine($"Уравнение линейное. Корень: x = {x:F6}");
+            }
+            return;
+        }
+
+        double discriminant = b * b - 4 * a * c;
+
+        if (discriminant > epsilon)
+        {
+            double sqrtD = Math.Sqrt(discriminant);
+            double x1 = (-b + sqrtD) / (2 * a);
+            double x2 = (-b - sqrtD) / (2 * a);
+            Console.WriteLine("Два вещественных корня:");
+            Console.WriteLine($"x1 = {x1:F6}");
+            Console.WriteLine($"x2 = {x2:F6}");
+        }
+        else if (Math.Abs(discriminant) <= epsilon)
+        {
+            double x = -b / (2 * a);
+            Console.WriteLine($"Один вещественный корень (кратный): x = {x:F6}");
+        }
+        else
+        {
+            double realPart = -b / (2 * a);
+            double imagPart = Math.Sqrt(-discriminant) / (2 * a);
+            Console.WriteLine("Два комплексных корня:");
+            Console.WriteLine($"x1 = {realPart:F6} + {imagPart:F6}i");
+            Console.WriteLine($"x2 = {realPart:F6} - {imagPart:F6}i");
+        }
+    }
+}
+```
