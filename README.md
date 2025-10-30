@@ -69,7 +69,7 @@ if __name__ == "__main__":
         print("Ошибка: введите числовые значения коэффициентов.")
 ```
 ## C# код для решения квадратных уравнений
-```
+```C#
 using System;
 
 class QuadraticEquationSolver
