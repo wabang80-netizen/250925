@@ -154,7 +154,7 @@ class QuadraticEquationSolver
     }
 }
 ```
-
+## Pascal код для приветствия мира
 ```Pascal
 program HelloWorld;
 
